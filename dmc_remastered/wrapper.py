@@ -24,6 +24,8 @@ class FrameStack(Wrapper):
         )
 
     def reset(self, *args, **kwargs):
+        if "seed" in kwargs.keys():
+            kwargs["seed"] = None
         obs, info = self.env.reset(*args, **kwargs)
         for _ in range(self._k):
             self._frames.append(obs)
